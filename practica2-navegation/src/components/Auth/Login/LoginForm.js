@@ -1,15 +1,19 @@
 import { View } from "react-native";
 import React from "react";
 import { TextInput, Button } from "react-native-paper";
+import Toast from "react-native-root-toast";
 import { globalStyles } from "../../../../styles";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { authApi } from "../../../api/auth";
+import { useAuth } from "../../../hooks/useAuth";
+
 
 export default function LoginForm(props) {
 
   const { cambioAuth } = props;
-  
+  const { login } = useAuth();
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -21,12 +25,16 @@ export default function LoginForm(props) {
     }),
     validateOnChange: false,
     onSubmit: async (formData) => {
-      const { email, password } = formData;
       try {
+        const { email, password } = formData;
         const response = await authApi.login(email, password);
-        console.log("response", response);
+        console.log("Response Login:", response);
+        login(response.jwt)
       } catch (error) {
         console.log(error);
+        Toast.show('Usuario contraseña incorrecta', {
+          position: Toast.positions.CENTER,
+        });
       }
     },
   });

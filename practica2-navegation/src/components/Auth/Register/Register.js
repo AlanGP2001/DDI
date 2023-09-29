@@ -5,9 +5,11 @@ import { globalStyles } from "../../../../styles";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { authApi } from "../../../api/auth";
+import Toast from "react-native-root-toast";
 
 export default function Register(props) {
   const { cambioAuth } = props;
+  const { showLogin } = props;
 
   const formik = useFormik({
     initialValues: {
@@ -28,8 +30,11 @@ export default function Register(props) {
       const { email, username, password } = formData;
       try {
         const response = await authApi.registerUser(email, username, password);
-        console.log("Response: ", response);
-        // showLogin();
+        Toast.show('Se registro correctamente', {
+          position: Toast.positions.CENTER,
+        });
+        showLogin();
+        console.log("Response Registro: ", response);
       } catch (error) {
         console.log(error);
       }

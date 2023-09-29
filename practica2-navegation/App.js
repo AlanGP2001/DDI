@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import RootNavitation from './src/components/navigation/RootNavigation';
+import AuthProvider from './src/context/AuthContext'
 import {
   useFonts,
   Montserrat_300Light,
@@ -31,9 +32,12 @@ export default function App() {
   }
 
   return (
-    <PaperProvider theme={theme}>
-      <RootNavitation />
-    </PaperProvider>
+
+    <AuthProvider>
+      <PaperProvider theme={theme}>
+        <RootNavitation />
+      </PaperProvider>
+    </AuthProvider>
   );
 }
 
