@@ -8,7 +8,7 @@ export const AuthProvider = (props) => {
 
     const login = async (token) => {
         try {
-            console.log('Token del Login: ', token)
+            console.log('Token del Login: ', token);
             await storageController.setToken(token);
         } catch (error) {
             console.log(error);
@@ -22,7 +22,7 @@ export const AuthProvider = (props) => {
 
     useEffect(() => {
         getSession();
-    }, [])
+    }, []);
 
     const data = {
         user: null,

@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import RootNavitation from './src/components/navigation/RootNavigation';
-import AuthProvider from './src/context/AuthContext'
+import { AuthProvider } from './src/context/AuthContext'
 import {
   useFonts,
   Montserrat_300Light,

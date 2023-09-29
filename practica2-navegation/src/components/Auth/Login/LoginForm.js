@@ -10,7 +10,6 @@ import { useAuth } from "../../../hooks/useAuth";
 
 
 export default function LoginForm(props) {
-
   const { cambioAuth } = props;
   const { login } = useAuth();
 
@@ -32,7 +31,7 @@ export default function LoginForm(props) {
         login(response.jwt)
       } catch (error) {
         console.log(error);
-        Toast.show('Usuario contraseña incorrecta', {
+        Toast.show('Usuario o Contraseña incorrectas', {
           position: Toast.positions.CENTER,
         });
       }
