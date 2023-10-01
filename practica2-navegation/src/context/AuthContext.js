@@ -5,7 +5,6 @@ export const AuthContext = createContext();
 
 export const AuthProvider = (props) => {
     const { children } = props;
-
     const login = async (token) => {
         try {
             console.log('Token del Login: ', token);
