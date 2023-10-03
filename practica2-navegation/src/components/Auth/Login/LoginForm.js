@@ -6,8 +6,8 @@ import { globalStyles } from "../../../../styles";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { authApi } from "../../../api/auth";
-import { users } from "../../../api/users";
 import { useAuth } from "../../../hooks/useAuth";
+import { userController } from "../../../api/users";
 
 
 export default function LoginForm(props) {
@@ -28,9 +28,9 @@ export default function LoginForm(props) {
       try {
         const { email, password } = formData;
         const response = await authApi.login(email, password);
-        console.log("Response Login:", response);
-        login(response.jwt)
-        await users.getMe(response.jwt);
+        // console.log("Response Login:", response);
+        login(response.jwt);
+        await userController.getMe(response.jwt);
       } catch (error) {
         console.log(error);
         Toast.show('Usuario o Contraseña incorrectas', {
