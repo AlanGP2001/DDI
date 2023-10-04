@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext } from 'react';
 import { storageController } from "../api/token";
 import { userController } from '../api/users';
+import { tokenExpired } from '../utils/tokenExpired';
 
 export const AuthContext = createContext();
 
@@ -23,10 +24,37 @@ export const AuthProvider = (props) => {
         }
     }
 
+    const logout = async () => {
+        try {
+            await storageController.removeToken();
+            setUser(null);
+            setLoading(false);            
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+        }
+    }
+
     const getSession = async () => {
         const token = await storageController.getToken();
         console.log('Token ==>', token);
-        setLoading(false);
+        if (!token) {
+            logout();
+            setLoading(false);
+            return;
+        }
+        if (tokenExpired(token)) {
+            logout();
+        } else {
+            login(token)
+        }
+    }
+
+    const upDateUser = (key, value) => {
+        setUser({
+            ...user,
+            [key]:value
+        })
     }
 
     useEffect(() => {
@@ -36,8 +64,8 @@ export const AuthProvider = (props) => {
     const data = {
         user,
         login,
-        logout: () => console.log('Logout'),
-        upDateUser: () => console.log('Update User')
+        logout,
+        upDateUser,
     }
     if (loading) return null;
     return (
