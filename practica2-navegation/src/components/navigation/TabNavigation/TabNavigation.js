@@ -5,10 +5,12 @@ import SettingScreen from "../../../screen/SettingScreen";
 import FavoritesScreen from "../../../screen/FavoritesScreen";
 import AccountScreen from "../../../screen/AccountScreen";
 
-import { View } from "react-native";
+import { View, Image } from "react-native";
 import AwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { styles } from "./TabNavigation.styles";
 import AuthScreen from "../../../screen/Auth/AuthScreen";
+
+import reck from "../../../assets/rick.png";
 
 export default function TabNavigation() {
   const Tab = createBottomTabNavigator();
@@ -19,9 +21,23 @@ export default function TabNavigation() {
       })}
     >
       <Tab.Screen
+        name="Account"
+        component={AccountScreen}
+        options={{ title: "Cuenta" }}
+      />
+
+      <Tab.Screen
         name="Home"
         component={HomScreen}
-        options={{ title: "Inicio" }}
+        options={{
+          title: "",
+          tabBarIcon: () => (
+            <Image
+              source={reck}
+              style={{ height: 100, width: 100}}
+            />
+          ),
+        }}
       />
 
       <Tab.Screen
@@ -30,17 +46,12 @@ export default function TabNavigation() {
         options={{ title: "Favoritos" }}
       />
 
-      <Tab.Screen
-        name="Account"
-        component={AccountScreen}
-        options={{ title: "Cuenta" }}
-      />
-
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Settings"
         component={SettingScreen}
         options={{ title: "Ajustes" }}
-      />
+      /> */}
+
     </Tab.Navigator>
   );
 }
@@ -50,7 +61,7 @@ const setIcon = (route, routeStatus) => {
   let color = "#6E6E6E";
 
   if (routeStatus.focused) {
-    color = "#BE81F7";
+    color = "#9CCC4E";
   }
   if (route.name === "Home") {
     iconName = "home";
