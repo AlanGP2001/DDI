@@ -10,7 +10,7 @@ import AwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { styles } from "./TabNavigation.styles";
 import AuthScreen from "../../../screen/Auth/AuthScreen";
 
-import reck from "../../../assets/rick.png";
+import reck from "../../../assets/perrito.png";
 
 export default function TabNavigation() {
   const Tab = createBottomTabNavigator();
