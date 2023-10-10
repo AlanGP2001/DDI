@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomScreen from "../../../screen/HomScreen";
+import HomeScreen from "../../../screen/HomeScreen";
 import SettingScreen from "../../../screen/SettingScreen";
 import FavoritesScreen from "../../../screen/FavoritesScreen";
 import AccountScreen from "../../../screen/AccountScreen";
@@ -9,6 +9,7 @@ import { View, Image } from "react-native";
 import AwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { styles } from "./TabNavigation.styles";
 import AuthScreen from "../../../screen/Auth/AuthScreen";
+import RickandMortyApi from "../../../api/rm";
 
 import reck from "../../../assets/perrito.png";
 
@@ -23,21 +24,13 @@ export default function TabNavigation() {
       <Tab.Screen
         name="Account"
         component={AccountScreen}
-        options={{ title: "Cuenta" }}
+        options={{ title: "Mi Cuenta" }}
       />
 
       <Tab.Screen
         name="Home"
-        component={HomScreen}
-        options={{
-          title: "",
-          tabBarIcon: () => (
-            <Image
-              source={reck}
-              style={{ height: 100, width: 100}}
-            />
-          ),
-        }}
+        component={RickandMortyApi}
+        options={{ title: "" }}
       />
 
       <Tab.Screen
@@ -51,7 +44,6 @@ export default function TabNavigation() {
         component={SettingScreen}
         options={{ title: "Ajustes" }}
       /> */}
-
     </Tab.Navigator>
   );
 }
@@ -61,10 +53,15 @@ const setIcon = (route, routeStatus) => {
   let color = "#6E6E6E";
 
   if (routeStatus.focused) {
-    color = "#9CCC4E";
+    color = "#79B547";
   }
   if (route.name === "Home") {
-    iconName = "home";
+    return (
+      <Image
+        source={reck}
+        style={{ width: 100, height: 100, marginBottom: 50 }}
+      />
+    );
   }
   if (route.name === "Settings") {
     iconName = "cog";
