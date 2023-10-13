@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createStackNavigator } from '@react-navigation/stack';
 import TabNavigation from "./TabNavigation/TabNavigation";
+// import StackNavigation from "./StackNavigation/StackNavigation";
 
 export default function AppNavigation() {
-  const Stack = createNativeStackNavigator();
+  const Stack = createStackNavigator();
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -15,6 +15,7 @@ export default function AppNavigation() {
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
+      {/* <StackNavigation /> */}
     </NavigationContainer>
   );
 }

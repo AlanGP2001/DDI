@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../../../screen/HomeScreen";
 import SettingScreen from "../../../screen/SettingScreen";
-import FavoritesScreen from "../../../screen/FavoritesScreen";
+import FavoritesScreen from "../../../screen/Favoritos/FavoritesScreen";
 import AccountScreen from "../../../screen/AccountScreen";
 
 import { View, Image } from "react-native";

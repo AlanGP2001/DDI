@@ -1,30 +1,31 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { Avatar, Card } from "react-native-paper";
 
 export default function Cards(props) {
   const { characters } = props;
+  const navigation = useNavigation();
+
   const goToPersonaje = () => {
     console.log(`Conoce más del personaje: ${characters.name}`);
+
+    navigation.navigate('CharacterDetail'
+    // , {
+    //   id: characters.id,
+    //   name: characters.name,
+    //   status: characters.status,
+    //   species: characters.species,
+    //   type: characters.type,
+    //   image: characters.image,
+    //   gender: characters.gender,
+    //   origin: characters.origin,
+    // }
+    );
+
   };
 
   return (
-    // <TouchableOpacity onPress={goToPersonaje}>
-    //   <View style={styles.card}>
-    //     <View style={styles.content}>
-    //       <View style={styles.infoContainer}>
-    //         <Text style={styles.name}>Nombre: {characters.name}</Text>
-    //         <Text style={styles.info}>Género: {characters.gender}</Text>
-    //         <Text style={styles.info}>Especie: {characters.species}</Text>
-    //         <Text style={styles.info}>Estado: {characters.status}</Text>
-    //       </View>
-    //       <Text style={styles.number}>
-    //         {characters.id < 10 ? `#00${characters.id}` : `#0${characters.id}`}
-    //       </Text>
-    //       <Image style={styles.imagen} source={{ uri: characters.image }} />
-    //     </View>
-    //   </View>
-    // </TouchableOpacity>
     <TouchableOpacity onPress={goToPersonaje}>
       <Card.Title
         style={styles.card}
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     marginStart: 10,
   },
   text: {
-    color: '#79B547'
+    color: "#79B547",
   },
   content: {
     flexDirection: "row",
