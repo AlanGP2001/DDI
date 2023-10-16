@@ -8,8 +8,6 @@ export default function Cards(props) {
   const navigation = useNavigation();
 
   const goToPersonaje = () => {
-    console.log(`Conoce más del personaje: ${characters.name}`);
-
     navigation.navigate("Detail", {
       id: characters.id,
       name: characters.name,
@@ -47,12 +45,12 @@ const styles = StyleSheet.create({
     marginStart: 10,
   },
   title: {
-    color: 'white',
+    color: "white",
     fontSize: 18,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   subtitle: {
-    color: 'white'
+    color: "white",
   },
   text: {
     color: "#79B547",

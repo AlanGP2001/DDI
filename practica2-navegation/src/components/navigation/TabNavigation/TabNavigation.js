@@ -24,19 +24,34 @@ export default function TabNavigation() {
       <Tab.Screen
         name="Account"
         component={AccountScreen}
-        options={{ title: "" }}
+        options={{
+          title: "",
+          headerStyle: {
+            backgroundColor: "black",
+          },
+        }}
       />
 
       <Tab.Screen
         name="StackNavigation"
         component={StackNavigation}
-        options={{ title: "" }}
+        options={{
+          title: "",
+          headerStyle: {
+            backgroundColor: "black",
+          },
+        }}
       />
 
       <Tab.Screen
         name="StackFavoritos"
         component={StackFavoritos}
-        options={{ title: "" }}
+        options={{
+          title: "",
+          headerStyle: {
+            backgroundColor: "black",
+          },
+        }}
       />
     </Tab.Navigator>
   );
@@ -56,7 +71,7 @@ const setIcon = (route, routeStatus) => {
         style={{ width: 100, height: 100, marginBottom: 50 }}
       />
     );
-  } 
+  }
   if (route.name === "StackFavoritos") {
     iconName = "heart";
   }

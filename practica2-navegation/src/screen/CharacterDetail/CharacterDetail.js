@@ -24,7 +24,7 @@ export default function CharacterDetail(props) {
           <View style={styles.MainContainer}>
             <Text style={styles.username}> {params.name} </Text>
             <IconoFavorito id={params.id} />
-            <TableDetail params={params} />
+            {/* <TableDetail params={params} /> */}
           </View>
         </ScrollView>
       </View>
