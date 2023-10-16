@@ -12,7 +12,7 @@ export default function RickandMortyApi() {
       try {
         const response = await axios.get(ENV.API_URL_RM);
         setCharacters(response.data.results);
-        console.log("response", response.data);
+        // console.log("response", response.data);
       } catch (error) {
         console.log(error);
       }

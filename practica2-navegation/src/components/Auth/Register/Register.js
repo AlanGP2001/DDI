@@ -34,7 +34,7 @@ export default function Register(props) {
           position: Toast.positions.CENTER,
         });
         showLogin();
-        console.log("Response Registro: ", response);
+        // console.log("Response Registro: ", response);
       } catch (error) {
         console.log(error);
       }

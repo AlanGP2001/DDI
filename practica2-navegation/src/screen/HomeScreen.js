@@ -1,18 +1,23 @@
 import React from "react";
-import { SafeAreaView, FlatList, StyleSheet } from "react-native";
+import { SafeAreaView, FlatList, ImageBackground } from "react-native";
 import Card from "../components/Card/Card";
+import { globalStyles } from "../../styles";
 
 export default function HomeScreen(props) {
   const { characters } = props;
-  console.log("Characters", characters);
   return (
-    <SafeAreaView style={StyleSheet.container}>
+    <ImageBackground
+      source={require("../assets/fondo.png")}
+      style={globalStyles.containers.container}
+    >
+    <SafeAreaView>
       <FlatList
         data={characters}
         showsVerticalScrollIndicator={false}
         keyExtractor={(characters) => String(characters.id)}
         renderItem={({ item }) => <Card characters={item} />}
-      />
+        />
     </SafeAreaView>
+        </ImageBackground>
   );
 }

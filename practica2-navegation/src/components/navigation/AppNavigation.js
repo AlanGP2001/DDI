@@ -1,7 +1,8 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator } from "@react-navigation/stack";
 import TabNavigation from "./TabNavigation/TabNavigation";
+import { View } from "react-native";
 // import StackNavigation from "./StackNavigation/StackNavigation";
 
 export default function AppNavigation() {
@@ -15,7 +16,6 @@ export default function AppNavigation() {
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
-      {/* <StackNavigation /> */}
     </NavigationContainer>
   );
 }

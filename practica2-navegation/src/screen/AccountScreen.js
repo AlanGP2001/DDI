@@ -1,27 +1,33 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, ImageBackground } from "react-native";
 import { Avatar, Button } from "react-native-paper";
 import { useAuth } from "../hooks/useAuth";
+import { globalStyles } from "../../styles";
 
 export default function AccountScreen() {
   const { user, logout } = useAuth();
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Avatar.Image size={270} source={require("../assets/baboso.png")} />
-      </View>
-      <ScrollView>
-        <View style={styles.MainContainer}>
-          <Text style={styles.username}> Nombre: {user.username} </Text>
-          <Text style={styles.email}> Correo: {user.email} </Text>
-          <Button mode="contained" onPress={logout}>
-            Cerrar sesión
-          </Button>
+    <ImageBackground
+      source={require("../assets/fondo.png")}
+      style={globalStyles.containers.container}
+    >
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Avatar.Image size={270} source={require("../assets/baboso.png")} />
         </View>
-      </ScrollView>
-      <View style={styles.footer}></View>
-    </View>
+        <ScrollView>
+          <View style={styles.MainContainer}>
+            <Text style={styles.username}> Nombre: {user.username} </Text>
+            <Text style={styles.email}> Correo: {user.email} </Text>
+            <Button mode="contained" onPress={logout}>
+              Cerrar sesión
+            </Button>
+          </View>
+        </ScrollView>
+        <View style={styles.footer}></View>
+      </View>
+    </ImageBackground>
   );
 }
 
@@ -43,14 +49,16 @@ const styles = StyleSheet.create({
   },
   username: {
     fontSize: 35,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 20,
-},
-email: {
+    color: 'white'
+  },
+  email: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 20,
-},
+    color: 'white'
+  },
   footer: {
     flexDirection: "row",
     justifyContent: "space-between", // espacio entre los elementos,

@@ -1,3 +1,4 @@
+import { Image } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import RickandMortyApi from "../../../api/rm";
 import CharacterDetail from "../../../screen/CharacterDetail/CharacterDetail";
@@ -17,11 +18,17 @@ export default function StackNavigation() {
           }}
         />
         <Stack.Screen
-          name="CharacterDetail"
+          name="Detail"
           component={CharacterDetail}
           options={{
-            headerShown: false,
+            title: '',
             headerTransparent: true,
+            headerBackImage: () => {
+              <Image source={require('../../../assets/arrowleft.png')}/>
+            },
+            headerLeftContainerStyle: {
+              marginTop: 90
+            }
           }}
         />
       </Stack.Navigator>

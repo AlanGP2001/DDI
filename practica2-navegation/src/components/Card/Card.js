@@ -10,29 +10,26 @@ export default function Cards(props) {
   const goToPersonaje = () => {
     console.log(`Conoce más del personaje: ${characters.name}`);
 
-    navigation.navigate('CharacterDetail'
-    // , {
-    //   id: characters.id,
-    //   name: characters.name,
-    //   status: characters.status,
-    //   species: characters.species,
-    //   type: characters.type,
-    //   image: characters.image,
-    //   gender: characters.gender,
-    //   origin: characters.origin,
-    // }
-    );
-
+    navigation.navigate("Detail", {
+      id: characters.id,
+      name: characters.name,
+      status: characters.status,
+      species: characters.species,
+      type: characters.type,
+      image: characters.image,
+      gender: characters.gender,
+      origin: characters.origin,
+    });
   };
 
   return (
     <TouchableOpacity onPress={goToPersonaje}>
       <Card.Title
         style={styles.card}
-        title={characters.name}
-        subtitle={characters.species}
+        title={<Text style={styles.title}>{characters.name}</Text>}
+        subtitle={<Text style={styles.subtitle}>{characters.species}</Text>}
         left={(props) => (
-          <Avatar.Image size={45} source={{ uri: characters.image }} />
+          <Avatar.Image size={50} source={{ uri: characters.image }} />
         )}
         right={(props) => (
           <Text style={styles.text}>
@@ -48,6 +45,14 @@ const styles = StyleSheet.create({
   card: {
     marginEnd: 15,
     marginStart: 10,
+  },
+  title: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  subtitle: {
+    color: 'white'
   },
   text: {
     color: "#79B547",

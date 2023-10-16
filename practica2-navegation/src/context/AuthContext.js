@@ -17,7 +17,7 @@ export const AuthProvider = (props) => {
             const response = await userController.getMe();
             setUser(response);
             setLoading(false);
-            console.log('Login: ',response);
+            // console.log('Login: ',response);
         } catch (error) {
             console.log(error);
             setLoading(false);
@@ -37,7 +37,7 @@ export const AuthProvider = (props) => {
 
     const getSession = async () => {
         const token = await storageController.getToken();
-        console.log('Token ==>', token);
+        // console.log('Token ==>', token);
         if (!token) {
             logout();
             setLoading(false);
