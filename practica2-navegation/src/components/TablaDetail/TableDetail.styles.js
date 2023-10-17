@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     color: "#FFF",
-    fontSize: 17,
+    fontSize: 16,
   },
   rowText: {
     textAlign: "center",
@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
     fontSize: 15,
   },
   border: {
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: "white",
   },
 });

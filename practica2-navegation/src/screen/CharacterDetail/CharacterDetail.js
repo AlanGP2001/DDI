@@ -1,11 +1,10 @@
 import { View, Text, StyleSheet, ScrollView, ImageBackground } from "react-native";
-import { Avatar, Button } from "react-native-paper";
+import { Avatar } from "react-native-paper";
 import IconoFavorito from "../Favoritos/IconoFavorito";
 import { globalStyles } from "../../../styles";
 import TableDetail from "../../components/TablaDetail/TablaDetail";
 
 export default function CharacterDetail(props) {
-  console.log(props);
   const {
     navigation,
     route: { params },
@@ -24,7 +23,7 @@ export default function CharacterDetail(props) {
           <View style={styles.MainContainer}>
             <Text style={styles.username}> {params.name} </Text>
             <IconoFavorito id={params.id} />
-            {/* <TableDetail params={params} /> */}
+            <TableDetail params={params} />
           </View>
         </ScrollView>
       </View>

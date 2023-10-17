@@ -11,7 +11,7 @@ export default function TableDetail(props) {
       [params.status],
       [params.species],
       [params.gender],
-      [params.origin["name"]],
+      [params.origin],
     ],
   ];
 

@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AccountScreen from "../../../screen/AccountScreen";
 
-import { View, Image } from "react-native";
+import { Image } from "react-native";
 import AwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { styles } from "./TabNavigation.styles";
 

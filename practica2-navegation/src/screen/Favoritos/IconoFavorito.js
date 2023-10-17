@@ -8,8 +8,6 @@ export default function IconoFavorito(props) {
   const [ isFavorite, setIsFavorite ] = useState(undefined);
   const [ reloadFavorite, setReloadFavorite ] = useState(false)
 
-  console.log(isFavorite);
-
   useEffect(() => {
     (async () => {
       const response = await isFavoriteApi(id);

@@ -16,7 +16,7 @@ export default function Cards(props) {
       type: characters.type,
       image: characters.image,
       gender: characters.gender,
-      origin: characters.origin,
+      origin: characters.origin.name,
     });
   };
 

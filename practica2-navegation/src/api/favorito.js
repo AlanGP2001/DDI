@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { includes, inclute, pull } from 'lodash'
+import { includes, pull } from 'lodash'
 import { ENV } from '../utils/constants'
 
 export const getFavoriteApi = async () => {
@@ -12,7 +12,6 @@ export const getFavoriteApi = async () => {
 }
 
 export const addFavoriteApi = async (id) => {
-    console.log('Api',id);
     try {
         const favorites = await getFavoriteApi();;
         favorites.push(id);
@@ -23,7 +22,6 @@ export const addFavoriteApi = async (id) => {
 }
 
 export const isFavoriteApi = async (id) => {
-    console.log('Api',id);
     try {
         const favorites = await getFavoriteApi();;
         return includes(favorites, id);
@@ -34,7 +32,6 @@ export const isFavoriteApi = async (id) => {
 }
 
 export const removeFavoriteApi = async (id) => {
-    console.log('Api',id);
     try {
         const favorites = await getFavoriteApi();;
         const newFavorites = pull(favorites, id);

@@ -26,7 +26,7 @@ export default function Register(props) {
     }),
     validateOnChange: false,
     onSubmit: async (formData) => {
-      console.log("Formulario", formData);
+      // console.log("Formulario", formData);
       const { email, username, password } = formData;
       try {
         const response = await authApi.registerUser(email, username, password);

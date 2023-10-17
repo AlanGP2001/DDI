@@ -5,9 +5,9 @@ import CharacterDetail from "../../../screen/CharacterDetail/CharacterDetail";
 export default function StackFavoritos() {
   const Stack = createStackNavigator();
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Favoritos">
       <Stack.Screen
-        name="Favorite"
+        name="FavoritesScreen"
         component={FavoritesScreen}
         options={{
           headerShown: false,
@@ -20,7 +20,6 @@ export default function StackFavoritos() {
         options={{
           title: "",
           headerTransparent: true,
-          
         }}
       />
     </Stack.Navigator>
