@@ -14,18 +14,20 @@ export default function TabNavigation() {
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
+      initialRouteName='StackNavigation'
       screenOptions={({ route }) => ({
         tabBarIcon: (routeStatus) => setIcon(route, routeStatus),
         tabBarStyle: {
           backgroundColor: "black",
         },
+        tabBarShowLabel: false
       })}
     >
       <Tab.Screen
         name="Account"
         component={AccountScreen}
         options={{
-          title: "",
+          title: "Mi Cuenta",
           headerStyle: {
             backgroundColor: "black",
           },
@@ -37,6 +39,8 @@ export default function TabNavigation() {
         component={StackNavigation}
         options={{
           title: "",
+          tabBarLabel: '',
+          // headerTransparent: true,
           headerStyle: {
             backgroundColor: "black",
           },

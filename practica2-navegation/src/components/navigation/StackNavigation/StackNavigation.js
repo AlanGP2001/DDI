@@ -3,11 +3,9 @@ import { Image, TouchableOpacity, StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import RickandMortyApi from "../../../api/rm";
 import CharacterDetail from "../../../screen/CharacterDetail/CharacterDetail";
-import { useNavigation } from "@react-navigation/native";
 
 export default function StackNavigation() {
   const Stack = createStackNavigator();
-  const navigation = useNavigation();
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -24,18 +22,9 @@ export default function StackNavigation() {
         options={{
           title: "",
           headerTransparent: true,
-          headerLeft: () => {
-            return (
-              <TouchableOpacity
-                onPress={() => navigation.navigate("RickandMortyApi")}
-              >
-                <Image
-                  source={require("../../../assets/arrowleft.png")}
-                  style={Styles.img}
-                />
-              </TouchableOpacity>
-            );
-          },
+          headerBackImage: () => (
+            <Image source={require('../../../assets/arrowleft.png')} style={{ width: 50, height: 50}} />
+            ),
         }}
       />
     </Stack.Navigator>

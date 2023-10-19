@@ -20,6 +20,12 @@ export default function StackFavoritos() {
         options={{
           title: "",
           headerTransparent: true,
+          headerBackImage: () => (
+            <Image source={require('../../../assets/arrowleft.png')} />
+          ),
+          headerLeftContainerStyle: {
+            marginTop: 90
+          }
         }}
       />
     </Stack.Navigator>
