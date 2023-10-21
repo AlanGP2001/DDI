@@ -15,16 +15,19 @@ export default function StackFavoritos() {
         }}
       />
       <Stack.Screen
-        name="CharacterDetail"
+        name="Detail"
         component={CharacterDetail}
         options={{
           title: "",
           headerTransparent: true,
-          headerBackImage: () => (
-            <Image source={require('../../../assets/arrowleft.png')} />
-          ),
           headerLeftContainerStyle: {
-            marginTop: 90
+            marginTop: 10,
+            marginStart: 20,
+            backgroundColor: '#79B547',
+            borderRadius: 200,
+            height: 50,
+            width: 50,
+            tintColor: 'white'
           }
         }}
       />

@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Table, Row, Rows, Cell } from "react-native-table-component";
+import { View } from "react-native";
+import { Table, Row, Rows } from "react-native-table-component";
 import { styles } from './TableDetail.styles'
 
 export default function TableDetail(props) {

@@ -23,8 +23,20 @@ export default function StackNavigation() {
           title: "",
           headerTransparent: true,
           headerBackImage: () => (
-            <Image source={require('../../../assets/arrowleft.png')} style={{ width: 50, height: 50}} />
-            ),
+            <Image
+              source={require("../../../assets/arrowleft.png")}
+              style={{ width: 30, height: 40, tintColor: 'white' }}
+            />
+          ),
+          headerLeftContainerStyle: {
+            marginTop: 10,
+            marginStart: 20,
+            backgroundColor: '#79B547',
+            borderRadius: 200,
+            height: 50,
+            width: 50,
+            tintColor: 'white'
+          }
         }}
       />
     </Stack.Navigator>
@@ -35,8 +47,8 @@ const Styles = StyleSheet.create({
   img: {
     height: 50,
     width: 50,
-    backgroundColor: '#79B547',
+    backgroundColor: "#79B547",
     borderRadius: 30,
     marginStart: 20,
-  }
-})
+  },
+});

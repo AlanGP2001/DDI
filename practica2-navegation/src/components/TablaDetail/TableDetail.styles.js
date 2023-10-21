@@ -18,6 +18,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
   rowText: {
+    margin: 6,
     textAlign: "center",
     height: 80,
     paddingTop: 20,

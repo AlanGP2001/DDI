@@ -10,14 +10,14 @@ export default function HomeScreen(props) {
       source={require("../assets/fondo.png")}
       style={globalStyles.containers.container}
     >
-    <SafeAreaView>
-      <FlatList
-        data={characters}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={(characters) => String(characters.id)}
-        renderItem={({ item }) => <Card characters={item} />}
+      <SafeAreaView>
+        <FlatList
+          data={characters}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(characters) => String(characters.id)}
+          renderItem={({ item }) => <Card characters={item} />}
         />
-    </SafeAreaView>
-        </ImageBackground>
+      </SafeAreaView>
+    </ImageBackground>
   );
 }
