@@ -1,47 +1,42 @@
-// import { View, Text } from "react-native";
-// import { Button } from "react-native-paper";
-// import { globalStyles } from "../../../styles";
-// import { getFavoriteApi } from "../../api/favorito";
-
-// export default function FavoritesScreen() {
-//   const checkFavorite = async () => {
-//     const response = await getFavoriteApi();
-//     console.log(response);
-//   }
-
-//   return (
-//     <View style={globalStyles.form.contenido}>
-//       <Button
-//         mode='contained'
-//         onPress={checkFavorite}
-//       >
-//         Agregar a Favoritos
-//       </Button>
-//       <Text style={globalStyles.form.text}>Favoritos</Text>
-//     </View>
-//   );
-// }
-
 import React, { useCallback, useState } from "react";
-import { getFavoriteApi } from "../../api/favorito";
 import HomeScreen from "../HomeScreen";
 import { useFocusEffect } from "@react-navigation/native";
 import axios from "axios";
 import { ENV } from "../../utils/constants";
+import { getFavoriteApi } from "../../api/favorito";
 
 export default function FavoritesScreen() {
   const [characters, setCharacters] = useState([]);
-  const [favoritos, setFavoritos] = useState([]);
+  
+  // Función para obtener todos los personajes de la API paginada
+  async function getAllCharacters() {
+    let allCharacters = [];
+    let nextPage = ENV.API_URL_RM;
+
+    while (nextPage) {
+      const response = await axios.get(nextPage);
+      const newCharacters = response.data.results;
+      allCharacters = [...allCharacters, ...newCharacters];
+      nextPage = response.data.info.next;
+    }
+
+    return allCharacters;
+  }
+
   useFocusEffect(
     useCallback(() => {
       (async () => {
-        const favoriteResponse = await getFavoriteApi();
-        console.log("Lista de Favoritos", favoriteResponse);
-        setFavoritos(favoriteResponse);
-
         try {
-          const response = await axios.get(ENV.API_URL_RM);
-          setCharacters(response.data.results);
+          const favoriteResponse = await getFavoriteApi();
+          console.log("Lista de Favoritos", favoriteResponse);
+
+          // Obtén los personajes de la API de Rick and Morty
+          const allCharacters = await getAllCharacters();
+
+          // Combina los personajes favoritos con los personajes de la API
+          const favoriteCharacters = allCharacters.filter((char) => favoriteResponse.includes(char.id));
+
+          setCharacters(favoriteCharacters);
         } catch (error) {
           console.log(error);
         }
@@ -50,8 +45,6 @@ export default function FavoritesScreen() {
   );
 
   return (
-    <HomeScreen
-      characters={characters.filter((char) => favoritos.includes(char.id))}
-    />
+    <HomeScreen characters={characters} />
   );
 }
