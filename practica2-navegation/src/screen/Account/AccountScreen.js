@@ -1,20 +1,55 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, ImageBackground } from "react-native";
+import { View, Text, StyleSheet, ScrollView, ImageBackground, Alert } from "react-native";
 import { Avatar, Button } from "react-native-paper";
-import { useAuth } from "../hooks/useAuth";
-import { globalStyles } from "../../styles";
+import { useAuth } from "../../hooks/useAuth";
+import { globalStyles } from "../../../styles";
+import Menu from "../../components/Menu/Menu";
 
 export default function AccountScreen() {
   const { user, logout } = useAuth();
 
+  const logoutAlert = () => {
+    Alert.alert(
+      'Cerrar sesión',
+      '¿Estás seguro que desea cerrar sesión?',
+      [
+        {
+          text: 'Cancelar',
+          style: 'cancel',
+        },
+        { 
+          text: 'Cerrar sesión',
+          onPress: () => logout(),
+        }
+      ],
+      {
+        cancelable: false,
+      }
+    )
+  }
+
   return (
     <ImageBackground
-      source={require("../assets/fondo.png")}
+      source={require("../../assets/fondo.png")}
       style={globalStyles.containers.container}
     >
       <View style={styles.container}>
-        <View style={styles.header}>
-          <Avatar.Image size={270} source={require("../assets/baboso.png")} />
+        <Text style={styles.username}>Bienvenido</Text>
+        <Text style={styles.username}>
+          {
+            user.firstname && user.lastname
+              ? `${user.firstname} ${user.lastname}`
+              : user.email  
+          }
+        </Text>
+        <Menu />
+        <Button
+          mode="contained"
+          onPress={logoutAlert}>
+          Cerrar sesión
+        </Button>
+        {/* <View style={styles.header}>
+          <Avatar.Image size={270} source={require("../../assets/baboso.png")} />
         </View>
         <ScrollView>
           <View style={styles.MainContainer}>
@@ -25,7 +60,7 @@ export default function AccountScreen() {
             </Button>
           </View>
         </ScrollView>
-        <View style={styles.footer}></View>
+        <View style={styles.footer}></View> */}
       </View>
     </ImageBackground>
   );
@@ -34,6 +69,8 @@ export default function AccountScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
     // flexDirection: "column"
   },
   header: {
@@ -51,7 +88,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: "bold",
     marginBottom: 20,
-    color: 'white'
+    color: '#79B547'
   },
   email: {
     fontSize: 20,

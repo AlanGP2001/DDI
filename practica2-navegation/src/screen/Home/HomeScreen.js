@@ -1,8 +1,8 @@
 import { SafeAreaView, FlatList, ImageBackground, ActivityIndicator } from "react-native";
 import React from "react";
 import { styles } from "./HomeScreen.styles";
-import Card from "../components/Card/Card";
-import { globalStyles } from "../../styles";
+import Card from "../../components/Card/Card";
+import { globalStyles } from "../../../styles";
 
 export default function HomeScreen(props) {
   const { characters, loadMoreData, nextUrl } = props;
@@ -14,7 +14,7 @@ export default function HomeScreen(props) {
   }
   return (
     <ImageBackground
-      source={require("../assets/fondo.png")}
+      source={require("../../assets/fondo.png")}
       style={globalStyles.containers.container}
     >
       <SafeAreaView>

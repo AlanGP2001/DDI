@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext, useCallback } from 'react';
 import { storageController } from "../api/token";
 import { userController } from '../api/users';
 import { tokenExpired } from '../utils/tokenExpired';
@@ -12,7 +12,7 @@ export const AuthProvider = (props) => {
 
     const login = async (token) => {
         try {
-            // console.log('Token del Login: ', token);
+            console.log('Token del Login: ', token);
             await storageController.setToken(token);
             const response = await userController.getMe();
             setUser(response);
@@ -28,7 +28,7 @@ export const AuthProvider = (props) => {
         try {
             await storageController.removeToken();
             setUser(null);
-            setLoading(false);            
+            setLoading(false);
         } catch (error) {
             console.log(error);
             setLoading(false);
@@ -50,12 +50,9 @@ export const AuthProvider = (props) => {
         }
     }
 
-    const upDateUser = (key, value) => {
-        setUser({
-            ...user,
-            [key]:value
-        })
-    }
+    const upDateUser = useCallback((key, value) => {
+        setUser((prevUser) => ({ ...prevUser, [key]: value }));
+    }, []);
 
     useEffect(() => {
         getSession();

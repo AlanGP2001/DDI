@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import HomeScreen from "../HomeScreen";
+import HomeScreen from "../Home/HomeScreen";
 import { useFocusEffect } from "@react-navigation/native";
 import axios from "axios";
 import { ENV } from "../../utils/constants";

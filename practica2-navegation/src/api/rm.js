@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ENV } from "../utils/constants";
-import HomeScreen from "../screen/HomeScreen";
+import HomeScreen from "../screen/Home/HomeScreen";
 
 export default function RickandMortyApi() {
   const [characters, setCharacters] = useState([]);

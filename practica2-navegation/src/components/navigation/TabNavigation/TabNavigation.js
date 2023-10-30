@@ -1,6 +1,5 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import AccountScreen from "../../../screen/AccountScreen";
 
 import { Image } from "react-native";
 import AwesomeIcon from "react-native-vector-icons/FontAwesome";
@@ -9,6 +8,7 @@ import { styles } from "./TabNavigation.styles";
 import reck from "../../../assets/perrito.png";
 import StackNavigation from "../StackNavigation/StackNavigation";
 import StackFavoritos from "../StackNavigation/StackFavoritos";
+import StackAcount from "../StackNavigation/StackAcount";
 
 export default function TabNavigation() {
   const Tab = createBottomTabNavigator();
@@ -24,10 +24,10 @@ export default function TabNavigation() {
       })}
     >
       <Tab.Screen
-        name="Account"
-        component={AccountScreen}
+        name="StackAcount"
+        component={StackAcount}
         options={{
-          title: "Mi Cuenta",
+          title: "",
           headerStyle: {
             backgroundColor: "black",
           },
@@ -79,7 +79,7 @@ const setIcon = (route, routeStatus) => {
   if (route.name === "StackFavoritos") {
     iconName = "heart";
   }
-  if (route.name === "Account") {
+  if (route.name === "StackAcount") {
     iconName = "user";
   }
 
