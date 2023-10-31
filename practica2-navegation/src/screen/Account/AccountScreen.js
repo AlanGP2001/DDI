@@ -4,9 +4,11 @@ import { Avatar, Button } from "react-native-paper";
 import { useAuth } from "../../hooks/useAuth";
 import { globalStyles } from "../../../styles";
 import Menu from "../../components/Menu/Menu";
+import { getFavoriteApi } from "../../api/favorito";
+import { userController } from "../../api/users";
 
 export default function AccountScreen() {
-  const { user, logout } = useAuth();
+  const { user, logout, upDateUser } = useAuth();
 
   const logoutAlert = () => {
     Alert.alert(
@@ -19,7 +21,16 @@ export default function AccountScreen() {
         },
         { 
           text: 'Cerrar sesión',
-          onPress: () => logout(),
+          onPress: async () => {
+            const jsonFavoritos = await getFavoriteApi();
+            const data = {
+              favoritos: jsonFavoritos
+            }
+            // console.log("Favoritos",pjFavoritos)
+            await userController.putMe(user.id, data)
+            upDateUser('favoritos', jsonFavoritos)
+            logout()
+          },
         }
       ],
       {

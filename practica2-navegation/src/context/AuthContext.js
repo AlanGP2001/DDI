@@ -2,6 +2,7 @@ import React, { useState, useEffect, createContext, useCallback } from 'react';
 import { storageController } from "../api/token";
 import { userController } from '../api/users';
 import { tokenExpired } from '../utils/tokenExpired';
+import { agragarTodosFavoritos, elimarStorageFavorite } from '../api/favorito';
 
 export const AuthContext = createContext();
 
@@ -9,12 +10,19 @@ export const AuthProvider = (props) => {
     const { children } = props;
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    
+        useEffect(() => {
+            getSession();
+        }, []);
 
     const login = async (token) => {
         try {
             console.log('Token del Login: ', token);
             await storageController.setToken(token);
             const response = await userController.getMe();
+            if(response.favoritos) {
+                await agragarTodosFavoritos(response.favoritos);
+            }
             setUser(response);
             setLoading(false);
             // console.log('Login: ',response);
@@ -27,8 +35,9 @@ export const AuthProvider = (props) => {
     const logout = async () => {
         try {
             await storageController.removeToken();
+            await elimarStorageFavorite();
             setUser(null);
-            setLoading(false);
+            setLoading(false);            
         } catch (error) {
             console.log(error);
             setLoading(false);
@@ -52,10 +61,6 @@ export const AuthProvider = (props) => {
 
     const upDateUser = useCallback((key, value) => {
         setUser((prevUser) => ({ ...prevUser, [key]: value }));
-    }, []);
-
-    useEffect(() => {
-        getSession();
     }, []);
 
     const data = {
