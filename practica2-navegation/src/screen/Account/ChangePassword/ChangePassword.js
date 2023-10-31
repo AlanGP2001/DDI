@@ -48,27 +48,27 @@ export default function ChangePassword() {
       style={globalStyles.containers.container}
     >
       <View style={styles.imageContainer}>
-          <Image source={require("../../../assets/useredit.png")} style={styles.logo} />
-        </View>
-      <View  style={styles.container}>
-      <TextInput
-        label="Contraseña"
-        style={globalStyles.form.input}
-        autoCapitalize="none"
-        secureTextEntry
-        onChangeText={(text) => formik.setFieldValue("password", text)}
-        value={formik.values.password}
-        error={formik.errors.password}
-      />
-      <TextInput
-        label="Repita la contraseña"
-        style={globalStyles.form.input}
-        autoCapitalize="none"
-        secureTextEntry
-        onChangeText={(text) => formik.setFieldValue("repeatPassword", text)}
-        value={formik.values.repeatPassword}
-        error={formik.errors.repeatPassword}
-      />
+        <Image source={require("../../../assets/useredit.png")} style={styles.logo} />
+      </View>
+      <View style={styles.container}>
+        <TextInput
+          label="Contraseña"
+          style={globalStyles.form.input}
+          autoCapitalize="none"
+          secureTextEntry
+          onChangeText={(text) => formik.setFieldValue("password", text)}
+          value={formik.values.password}
+          error={formik.errors.password}
+        />
+        <TextInput
+          label="Repita la contraseña"
+          style={globalStyles.form.input}
+          autoCapitalize="none"
+          secureTextEntry
+          onChangeText={(text) => formik.setFieldValue("repeatPassword", text)}
+          value={formik.values.repeatPassword}
+          error={formik.errors.repeatPassword}
+        />
         <Button
           mode="contained"
           style={globalStyles.form.buttonSubmit}
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     alignItems: "center",
     paddingBottom: 50,
-    paddingTop:90,
+    paddingTop: 90,
   },
   logo: {
     width: 200,
