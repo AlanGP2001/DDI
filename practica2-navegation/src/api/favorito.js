@@ -5,8 +5,11 @@ import { ENV } from '../utils/constants'
 export const getFavoriteApi = async () => {
     try {
         const response = await AsyncStorage.getItem(ENV.STORAGE.FAVORITE);
-        return JSON.parse(response || []); // Comentar esta linea si no te quiere guardar en favoritos y descomentas la de abajo y luego regresas a como estaba antes
-        // return response;
+        if (response == []) {
+            return response;
+        } else {
+            return JSON.parse(response || []);
+        }
     } catch (error) {
         console.log(error);
     }
@@ -14,8 +17,16 @@ export const getFavoriteApi = async () => {
 
 export const addFavoriteApi = async (id) => {
     try {
-        const favorites = await getFavoriteApi(); // Comentar esta linea si no te quiere guardar en favoritos y descomentas la de abajo y luego regresas a como estaba antes
-        // const favorites = [];
+        const response = await getFavoriteApi();
+        console.log(response);
+        let favorites;
+
+        if (Array.isArray(response) && response.length === 0) {
+            favorites = [];
+        } else {
+            favorites = response;
+        }
+
         favorites.push(id);
         await AsyncStorage.setItem(ENV.STORAGE.FAVORITE, JSON.stringify(favorites));
     } catch (error) {
