@@ -16,8 +16,8 @@ export default function ChangeName(props) {
 
   const formik = useFormik({
     initialValues: {
-      firstname: "",
-      lastname: "",
+      firstname: user.firstname,
+      lastname: user.lastname,
     },
     validationSchema: Yup.object({
       firstname: Yup.string().required(true),

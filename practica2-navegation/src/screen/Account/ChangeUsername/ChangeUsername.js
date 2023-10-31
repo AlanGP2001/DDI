@@ -1,16 +1,71 @@
 import React from "react";
-import { View, Text, StyleSheet, ImageBackground } from "react-native";
+import { View, Text, StyleSheet, ImageBackground, Image } from "react-native";
 import { globalStyles } from "../../../../styles";
+import { TextInput, Button } from "react-native-paper";
+import Toast from "react-native-root-toast";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { authApi } from "../../../api/auth";
+import { useAuth } from "../../../hooks/useAuth";
+import { userController } from "../../../api/users";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ChangeUsername() {
+
+  const { user, upDateUser } = useAuth();
+  const navigation = useNavigation();
+
+  const formik = useFormik({
+    initialValues: {
+      username: user.username,
+      // email: '',
+    },
+    validationSchema: Yup.object({
+      username: Yup.string().required(true)
+    }),
+    validateOnChange: false,
+    onSubmit: async (formData) => {
+      try {
+        await userController.putMe(user.id, formData);
+        upDateUser('username', formData.username);
+        navigation.goBack();
+        Toast.show('Nombre del Usuario actualizado correctamente.', {
+          position: Toast.positions.CENTER,
+        });
+      } catch (error) {
+        console.log(error);
+        Toast.show('No se pudo actualizar el nombre del usuario .', {
+          position: Toast.positions.CENTER,
+        });
+      }
+    },
+  });
 
   return (
     <ImageBackground
       source={require("../../../assets/fondo.png")}
       style={globalStyles.containers.container}
     >
-      <View style={styles.container}>
-        <Text style={styles.text}> ChangeUsername </Text>
+      <View style={styles.imageContainer}>
+          <Image source={require("../../../assets/useredit.png")} style={styles.logo} />
+        </View>
+      <View  style={styles.container}>
+        <TextInput
+          label="Nombre del Usuario"
+          style={globalStyles.form.input}
+          autoCapitalize="none"
+          onChangeText={(text) => formik.setFieldValue("username", text)}
+          value={formik.values.username}
+          error={formik.errors.username}
+        />
+        <Button
+          mode="contained"
+          style={globalStyles.form.buttonSubmit}
+          onPress={formik.handleSubmit}
+          loading={formik.isSubmitting}
+        >
+          Guardar
+        </Button>
       </View>
     </ImageBackground>
   );
@@ -18,14 +73,16 @@ export default function ChangeUsername() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexDirection: 'column',
     justifyContent: "center",
-    alignItems: "center",
   },
-  text: {
-    fontSize: 35,
-    fontWeight: "bold",
-    marginBottom: 20,
-    color: 'white'
+  imageContainer: {
+    alignItems: "center",
+    paddingBottom: 50,
+    paddingTop:90,
+  },
+  logo: {
+    width: 200,
+    height: 200,
   },
 });
