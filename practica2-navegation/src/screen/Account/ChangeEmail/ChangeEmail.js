@@ -8,17 +8,16 @@ import * as Yup from "yup";
 import { authApi } from "../../../api/auth";
 import { useAuth } from "../../../hooks/useAuth";
 import { userController } from "../../../api/users";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 
 export default function ChangeEmail() {
 
-  const { user, upDateUser } = useAuth();
-  const navigation = useNavigation();
+  const { user, upDateUser, logout } = useAuth();
+  // const navigation = useNavigation();
 
   const formik = useFormik({
     initialValues: {
       email: user.email,
-      // email: '',
     },
     validationSchema: Yup.object({
       email: Yup.string().email(true).required(true)
@@ -28,7 +27,8 @@ export default function ChangeEmail() {
       try {
         await userController.putMe(user.id, formData);
         upDateUser('email', formData.email);
-        navigation.goBack();
+        // navigation.goBack();
+        logout();
         Toast.show('Correo electronico actualizado correctamente.', {
           position: Toast.positions.CENTER,
         });

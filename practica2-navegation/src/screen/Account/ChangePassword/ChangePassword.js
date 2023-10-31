@@ -5,15 +5,14 @@ import { TextInput, Button } from "react-native-paper";
 import Toast from "react-native-root-toast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { authApi } from "../../../api/auth";
 import { useAuth } from "../../../hooks/useAuth";
 import { userController } from "../../../api/users";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 
 export default function ChangePassword() {
 
-  const { user, upDateUser } = useAuth();
-  const navigation = useNavigation();
+  const { user, upDateUser, logout } = useAuth();
+  // const navigation = useNavigation();
 
   const formik = useFormik({
     initialValues: {
@@ -29,7 +28,8 @@ export default function ChangePassword() {
       try {
         await userController.putMe(user.id, formData);
         upDateUser('password', formData.password);
-        navigation.goBack();
+        // navigation.goBack();
+        logout();
         Toast.show('Contraseña actualizada correctamente.', {
           position: Toast.positions.CENTER,
         });
