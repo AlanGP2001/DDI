@@ -26,7 +26,7 @@ export default function AccountScreen() {
             const data = {
               favoritos: jsonFavoritos
             }
-            // console.log("Favoritos",pjFavoritos)
+            // console.log("Favoritos",jsonFavoritos)
             await userController.putMe(user.id, data)
             upDateUser('favoritos', jsonFavoritos)
             logout()
