@@ -5,7 +5,7 @@ import { ENV } from '../utils/constants'
 export const getFavoriteApi = async () => {
     try {
         const response = await AsyncStorage.getItem(ENV.STORAGE.FAVORITE);
-        return JSON.parse(response || []); // Comentas esta si no te quiere guardar en favoritos y descomentas las de abajo
+        return JSON.parse(response || []); // Comentar esta linea si no te quiere guardar en favoritos y descomentas la de abajo y luego regresas a como estaba antes
         // return response;
     } catch (error) {
         console.log(error);
@@ -14,7 +14,7 @@ export const getFavoriteApi = async () => {
 
 export const addFavoriteApi = async (id) => {
     try {
-        const favorites = await getFavoriteApi(); // Comentas esta si no te quiere guardar en favoritos y descomentas las de abajo
+        const favorites = await getFavoriteApi(); // Comentar esta linea si no te quiere guardar en favoritos y descomentas la de abajo y luego regresas a como estaba antes
         // const favorites = [];
         favorites.push(id);
         await AsyncStorage.setItem(ENV.STORAGE.FAVORITE, JSON.stringify(favorites));
