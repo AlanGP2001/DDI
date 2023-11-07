@@ -5,7 +5,7 @@ import { ENV } from '../utils/constants'
 export const getFavoriteApi = async () => {
     try {
         const response = await AsyncStorage.getItem(ENV.STORAGE.FAVORITE);
-        if (response == []) {
+        if (response === null ) {
             return response;
         } else {
             return JSON.parse(response || []);
@@ -21,13 +21,13 @@ export const addFavoriteApi = async (id) => {
         console.log(response);
         let favorites;
 
-        if (Array.isArray(response) && response.length === 0) {
+        if (response === null) {
             favorites = [];
         } else {
             favorites = response;
+            favorites.push(id);
         }
 
-        favorites.push(id);
         await AsyncStorage.setItem(ENV.STORAGE.FAVORITE, JSON.stringify(favorites));
     } catch (error) {
         console.log(error);
